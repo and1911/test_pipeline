@@ -1,0 +1,25 @@
+trigger:
+  batch: false
+  branches:
+    include:
+      - retry-load/*
+  paths:
+    include:
+      - retry-load/**
+
+pr:
+  autoCancel: false
+  branches:
+    include:
+      - 'main'
+  paths:
+    include:
+      - retry-load/**
+
+# Keep agent work out of the measurement of notification-handler processing.
+pool: server
+
+steps:
+  - task: Delay@1
+    inputs:
+      delayForMinutes: '0'
